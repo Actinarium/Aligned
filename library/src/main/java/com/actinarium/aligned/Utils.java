@@ -18,8 +18,8 @@ public final class Utils {
      * to accommodate the characters.
      *
      * @param view             TextView to adjust
-     * @param firstLineLeading required leading for the first line. In general case try to keep it >= interline leading
-     *                         to avoid negative margins.
+     * @param firstLineLeading required leading for the first line. In general case try to keep it &gt;= interline
+     *                         leading to avoid negative margins.
      * @param interlineLeading leading for the 2nd and following lines
      * @param lastLineDescent  vertical space between the baseline of the last line and the bottom of the view.
      */
