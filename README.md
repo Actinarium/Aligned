@@ -1,4 +1,4 @@
-# Aligned
+# Aligned [![Download](https://api.bintray.com/packages/actinarium/maven/aligned/images/download.svg)](https://bintray.com/actinarium/maven/aligned/_latestVersion)
 
 Aligned is a tiny library for Android that makes putting text on baseline infinitely easier.
 
@@ -10,19 +10,13 @@ setting arbitrary leading and some other metrics on the text, helping you to pla
 
 ## How to use
 
-Add a dependency. It's on its way to jCenter, so for now add it to your `build.gradle` like this:
+First, add a dependency in your `build.gradle`:
 
 ```
-repositories {
-    maven {
-        url  "http://dl.bintray.com/actinarium/maven"
-    }
-}
-
-dependencies {
-    compile 'com.actinarium.aligned:aligned:0.1'
-}
+compile 'com.actinarium.aligned:aligned:0.1'
 ```
+
+For Maven and alternative configurations check [Bintray page][bintray].
 
 Now you can use `com.actinarium.aligned.TextView` in your layouts. It’s just like `TextView`, but offers three
 additional properties:
@@ -59,15 +53,17 @@ The full license text is [here][license].
 ## A personal appeal
 
 If you already feel that this library is a godsend that will save you lots of time, please consider adding me on
-[Google+][gplus] and/or [Twitter][twitter]. I am about to publish a free, no-ads productivity app soon, and it will be
-super-awesome if you hear of it as soon as possible and check it out.
+[Google+][gplus] and/or [Twitter][twitter]. I am about to publish a free no-ads aesthetically awesome productivity app
+soon, and it will make me super-happy if you are one of the first to hear and try it out.
 
-Also feel free to check [Rhythm][rhythm], my other typesetting adoration lib.
+Also feel free to check [Rhythm][rhythm], my other typesetting adoration lib (psst, it’s used in the sample here to draw
+grids and bounds).
 
 ---
 ¹ — In case you find it to be _not really_ cross-device, please open an issue.
 
 [mdspec-metrics]: http://www.google.com/design/spec/layout/metrics-keylines.html
+[bintray]: https://bintray.com/actinarium/maven/aligned
 [mdspec-leading]: http://www.google.com/design/spec/style/typography.html#typography-line-height
 [license]: https://raw.githubusercontent.com/Actinarium/Aligned/master/LICENSE
 [gplus]: https://plus.google.com/u/0/+PaulDanyliuk/posts
