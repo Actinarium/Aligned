@@ -1,0 +1,94 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+def libraryVersion = '1.0.0'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 23
+        versionCode 1
+        versionName libraryVersion
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+configurations {
+    javadocDeps
+}
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += configurations.javadocDeps
+    classpath += project.files(android.bootClasspath)
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        pom.groupId = 'com.actinarium.aligned'
+        pom.artifactId = 'aligned'
+        pom.version = libraryVersion
+        pom.project {
+            name 'Aligned'
+            description 'A tiny library for Android that makes putting text on baseline infinitely easier'
+            url 'https://github.com/Actinarium/Rhythm'
+            inceptionYear '2015'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            organization {
+                name 'Actinarium'
+                url 'http://actinarium.com'
+            }
+            developers {
+                developer {
+                    id 'Actine'
+                    name 'Paul Danyliuk'
+                    url 'https://plus.google.com/u/0/+PaulDanyliuk'
+                    roles {
+                        role 'architect'
+                        role 'developer'
+                    }
+                }
+            }
+            scm {
+                url 'https://github.com/Actinarium/Aligned.git'
+                connection 'scm:git:https://github.com/Actinarium/Aligned.git'
+                developerConnection 'scm:git:git@github.com:Actinarium/Aligned.git'
+            }
+        }
+
+        repository(url: "file://D:/Build")
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

@@ -1,0 +1,17 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Aligned text sample</string>
+
+    <string name="piece_of_copy_not_aligned">A piece of <xliff:g id="textSize" example="14">%d</xliff:g> sp pure TextView copy
+        with a few lines but no baseline alignment.
+    </string>
+
+    <string name="piece_of_copy_aligned">A piece of <xliff:g id="textSize" example="14">%d</xliff:g> sp copy with a few lines,
+        <xliff:g id="leading" example="16">%d</xliff:g> sp leading,
+        and <xliff:g id="lastLineDescent" example="8">%d</xliff:g> sp last line descent.
+    </string>
+
+    <string name="without_tlc">Out of the box</string>
+    <string name="with_tlc">Aligned</string>
+
+</resources>

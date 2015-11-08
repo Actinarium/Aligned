@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextView">
+        <attr name="leading" format="dimension" />
+        <attr name="firstLineLeading" format="dimension" />
+        <attr name="lastLineDescent" format="dimension" />
+    </declare-styleable>
+
+</resources>

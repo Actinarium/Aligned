@@ -1,0 +1,169 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/activity_frame"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?actionBarSize">
+
+        <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:baselineAligned="false">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/without_tlc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        app:leading="16sp"
+                        app:lastLineDescent="8sp"
+                        android:text="@string/without_tlc"/>
+
+                <TextView
+                        android:id="@+id/copy_12_w"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="12sp"/>
+
+                <TextView
+                        android:id="@+id/copy_13_w"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="13sp"/>
+
+                <TextView
+                        android:id="@+id/copy_14_w"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="14sp"/>
+
+                <TextView
+                        android:id="@+id/copy_16_w"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="16sp"/>
+
+                <TextView
+                        android:id="@+id/copy_18_w"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="18sp"/>
+
+                <TextView
+                        android:id="@+id/copy_24_w"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/with_tlc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        app:leading="16sp"
+                        app:lastLineDescent="8sp"
+                        android:text="@string/with_tlc"/>
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/copy_12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="12sp"
+                        app:leading="16sp"
+                        app:lastLineDescent="8sp"/>
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/copy_13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="13sp"
+                        app:leading="16sp"
+                        app:lastLineDescent="8sp"/>
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/copy_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="14sp"
+                        app:leading="16sp"
+                        app:lastLineDescent="8sp"/>
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/copy_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="16sp"
+                        app:leading="20sp"
+                        app:lastLineDescent="8sp"/>
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/copy_18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="18sp"
+                        app:leading="24sp"
+                        app:lastLineDescent="8sp"/>
+
+                <com.actinarium.aligned.TextView
+                        android:id="@+id/copy_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        app:leading="32sp"
+                        app:lastLineDescent="8sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:background="?colorPrimary"
+            app:titleMarginStart="16dp"/>
+
+</FrameLayout>

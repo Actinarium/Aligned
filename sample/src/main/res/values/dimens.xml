@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="actionBarElevation">4dp</dimen>
+    <dimen name="baselineStep">4dp</dimen>
+    <dimen name="eightDip">8dp</dimen>
+</resources>
