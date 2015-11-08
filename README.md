@@ -2,7 +2,7 @@
 
 Aligned is a tiny library for Android that makes putting text on baseline infinitely easier.
 
-![Aligned][https://github.com/Actinarium/Aligned/blob/master/images/sample.png]
+![Aligned](https://github.com/Actinarium/Aligned/blob/master/images/sample.png)
 
 At the moment it does only one thing _(and does it freaking rad!)_ — provides a `TextView` implementation that allows
 setting arbitrary leading and some other metrics on the text, helping you to place it nicely on the
