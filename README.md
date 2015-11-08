@@ -70,4 +70,6 @@ Also feel free to check [Rhythm][rhythm], my other typesetting adoration lib.
 [mdspec-metrics]: http://www.google.com/design/spec/layout/metrics-keylines.html
 [mdspec-leading]: http://www.google.com/design/spec/style/typography.html#typography-line-height
 [license]: https://raw.githubusercontent.com/Actinarium/Aligned/master/LICENSE
+[gplus]: https://plus.google.com/u/0/+PaulDanyliuk/posts
+[twitter]: https://twitter.com/actinarium
 [rhythm]: https://github.com/Actinarium/Rhythm
