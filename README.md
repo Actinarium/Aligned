@@ -1,4 +1,4 @@
-# Aligned [![Download](https://api.bintray.com/packages/actinarium/maven/aligned/images/download.svg)](https://bintray.com/actinarium/maven/aligned/_latestVersion)
+# Aligned [![Download](https://api.bintray.com/packages/actinarium/maven/aligned/images/download.svg)](https://bintray.com/actinarium/maven/aligned/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Aligned-green.svg?style=true)](https://android-arsenal.com/details/1/2748)
 
 Aligned is a tiny library for Android that makes putting text on baseline infinitely easier.
 
@@ -10,7 +10,7 @@ setting arbitrary leading and some other metrics on the text, helping you to pla
 
 ## How to use
 
-First, add a dependency in your `build.gradle`:
+First, add a dependency in your `build.gradle`, given that you have `jcenter()` in your repositories:
 
 ```
 compile 'com.actinarium.aligned:aligned:0.1'
@@ -29,9 +29,10 @@ additional properties:
 
 ![Leading attributes explained](https://github.com/Actinarium/Aligned/blob/master/images/leading.png)
 
-```
+```xml
 <com.actinarium.aligned.TextView
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -39,6 +40,17 @@ additional properties:
         app:leading="16sp"
         app:firstLineLeading="24sp"
         app:lastLineDescent="8sp" />
+```
+
+**Tip:** Since `com.actinarium.aligned.TextView` is a thin direct subclass of `android.widget.TextView` and both have
+the same short name, to avoid using full-qualified names you can just cast the view to `TextView` in your Java code
+unless you need the getters/setters for leading and descent properties:
+
+```java
+import android.widget.TextView;
+// ...
+TextView myAlignedLabel = (TextView) findViewById(R.id.label);
+myAlignedLabel.setText(...);
 ```
 
 Alternatively, you can use `com.actinarium.aligned.Utils.setExactMetrics()` method to programmatically adjust these
