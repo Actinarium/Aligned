@@ -21,10 +21,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import com.actinarium.rhythm.spec.RhythmSpecLayer;
+import android.graphics.Region;
+import com.actinarium.rhythm.RhythmSpecLayer;
+import com.actinarium.rhythm.config.LayerConfig;
+import com.actinarium.rhythm.config.RhythmInflationException;
+import com.actinarium.rhythm.config.RhythmSpecLayerFactory;
 
 /**
- * <p></p>
+ * A simple custom layer that draws layout bounds, similarly to "Draw layout bounds" in Developer options
  *
  * @author Paul Danyliuk
  */
@@ -35,8 +39,11 @@ public class LayoutBounds implements RhythmSpecLayer {
     private int mCrosshairSize;
 
     public LayoutBounds(int crosshairSize) {
+        this();
         mCrosshairSize = crosshairSize;
+    }
 
+    private LayoutBounds() {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
         mTemp = new RectF();
@@ -55,26 +62,31 @@ public class LayoutBounds implements RhythmSpecLayer {
         // Draw crosshair
         mPaint.setStrokeWidth(3);
         mPaint.setColor(Color.BLUE);
-        // top left
+
         canvas.save();
         canvas.clipRect(drawableBounds.left, drawableBounds.top, drawableBounds.left + mCrosshairSize, drawableBounds.top + mCrosshairSize);
+        canvas.clipRect(drawableBounds.right - mCrosshairSize, drawableBounds.top, drawableBounds.right, drawableBounds.top + mCrosshairSize, Region.Op.UNION);
+        canvas.clipRect(drawableBounds.left, drawableBounds.bottom - mCrosshairSize, drawableBounds.left + mCrosshairSize, drawableBounds.bottom, Region.Op.UNION);
+        canvas.clipRect(drawableBounds.right - mCrosshairSize, drawableBounds.bottom - mCrosshairSize, drawableBounds.right, drawableBounds.bottom, Region.Op.UNION);
         canvas.drawRect(mTemp, mPaint);
         canvas.restore();
-        // top right
-        canvas.save();
-        canvas.clipRect(drawableBounds.right - mCrosshairSize, drawableBounds.top, drawableBounds.right, drawableBounds.top + mCrosshairSize);
-        canvas.drawRect(mTemp, mPaint);
-        canvas.restore();
-        // bottom left
-        canvas.save();
-        canvas.clipRect(drawableBounds.left, drawableBounds.bottom - mCrosshairSize, drawableBounds.left + mCrosshairSize, drawableBounds.bottom);
-        canvas.drawRect(mTemp, mPaint);
-        canvas.restore();
-        // bottom right
-        canvas.save();
-        canvas.clipRect(drawableBounds.right - mCrosshairSize, drawableBounds.bottom - mCrosshairSize, drawableBounds.right, drawableBounds.bottom);
-        canvas.drawRect(mTemp, mPaint);
-        canvas.restore();
+    }
+
+    public static class Factory implements RhythmSpecLayerFactory<LayoutBounds> {
+
+        public static final String LAYER_TYPE = "layout-bounds";
+
+        @Override
+        public LayoutBounds getForConfig(LayerConfig config) {
+            LayoutBounds layoutBounds = new LayoutBounds();
+
+            layoutBounds.mCrosshairSize = config.getDimensionPixelOffset("crosshair-size", 0);
+            if (layoutBounds.mCrosshairSize <= 0) {
+                throw new RhythmInflationException("Error when inflating layout-bounds: crosshair-size is <= 0 or invalid");
+            }
+
+            return layoutBounds;
+        }
     }
 
 }

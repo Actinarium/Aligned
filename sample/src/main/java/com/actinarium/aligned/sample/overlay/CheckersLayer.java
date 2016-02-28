@@ -20,7 +20,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import com.actinarium.rhythm.spec.RhythmSpecLayer;
+import com.actinarium.rhythm.RhythmSpecLayer;
+import com.actinarium.rhythm.config.LayerConfig;
+import com.actinarium.rhythm.config.RhythmInflationException;
+import com.actinarium.rhythm.config.RhythmSpecLayerFactory;
 
 /**
  * <p></p>
@@ -46,6 +49,20 @@ public class CheckersLayer implements RhythmSpecLayer {
             canvas.drawRect(drawableBounds.left, y, drawableBounds.left + mSquareSize, y + mSquareSize, mPaint);
             canvas.drawRect(drawableBounds.right - mSquareSize, y, drawableBounds.right, y + mSquareSize, mPaint);
             y += mSquareSize << 1;
+        }
+    }
+
+    public static class Factory implements RhythmSpecLayerFactory<CheckersLayer> {
+
+        public static final String LAYER_TYPE = "checkers";
+
+        @Override
+        public CheckersLayer getForConfig(LayerConfig config) {
+            int squareSize = config.getDimensionPixelSize("size", 0);
+            if (squareSize <= 0) {
+                throw new RhythmInflationException("Size cannot be <= 0 for checkers layer");
+            }
+            return new CheckersLayer(squareSize);
         }
     }
 }

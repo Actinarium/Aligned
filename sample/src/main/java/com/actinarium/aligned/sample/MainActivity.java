@@ -20,15 +20,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.View;
 import android.widget.TextView;
 import com.actinarium.aligned.sample.overlay.CheckersLayer;
 import com.actinarium.aligned.sample.overlay.LayoutBounds;
 import com.actinarium.rhythm.RhythmDrawable;
 import com.actinarium.rhythm.RhythmGroup;
 import com.actinarium.rhythm.RhythmOverlay;
-import com.actinarium.rhythm.spec.GridLines;
+import com.actinarium.rhythm.config.RhythmOverlayInflater;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbar();
-        setupBaselineGrid();
 
         // Views without tender, love, and care
         TextView v12w = (TextView) findViewById(R.id.copy_12_w);
@@ -69,12 +68,20 @@ public class MainActivity extends AppCompatActivity {
         v18.setText(getString(R.string.piece_of_copy_aligned, 18, 24, 8));
         v24.setText(getString(R.string.piece_of_copy_aligned, 24, 32, 8));
 
-        // Draw layout bounds for all text views
-        final int i8dp = getResources().getDimensionPixelOffset(R.dimen.eightDip);
+        // Set up Rhythm
+        RhythmOverlayInflater inflater = RhythmOverlayInflater.createDefault(this);
+        inflater.registerFactory(CheckersLayer.Factory.LAYER_TYPE, new CheckersLayer.Factory());
+        inflater.registerFactory(LayoutBounds.Factory.LAYER_TYPE, new LayoutBounds.Factory());
 
-        RhythmGroup layoutBoundsGroup = new RhythmGroup("Layout bounds")
-                .addOverlay(new RhythmOverlay(null).addLayer(new LayoutBounds(i8dp)));
-        layoutBoundsGroup.decorate(v12, v13, v14, v16, v18, v24, v12w, v13w, v14w, v16w, v18w, v24w);
+        List<RhythmOverlay> overlays = inflater.inflate(R.raw.overlays);
+
+        // Draw layout bounds for all text views
+        new RhythmGroup()
+                .addOverlay(overlays.get(0))
+                .decorate(v12, v13, v14, v16, v18, v24, v12w, v13w, v14w, v16w, v18w, v24w);
+
+        // Draw baseline grid under all content
+        findViewById(R.id.content).setBackgroundDrawable(new RhythmDrawable(overlays.get(1)));
     }
 
     private void setupToolbar() {
@@ -84,18 +91,6 @@ public class MainActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setElevation(getResources().getDimension(R.dimen.actionBarElevation));
-    }
-
-    private void setupBaselineGrid() {
-        final View view = findViewById(R.id.content);
-        final int i4dp = getResources().getDimensionPixelOffset(R.dimen.baselineStep);
-        RhythmOverlay baseline = new RhythmOverlay("Baseline")
-                .addLayer(new GridLines(Gravity.TOP, i4dp).color(GridLines.DEFAULT_BASELINE_COLOR))
-                .addLayer(new CheckersLayer(i4dp * 2))
-                .addLayer(new LayoutBounds(i4dp * 2));
-        RhythmDrawable baselineDrawable = new RhythmDrawable();
-        baselineDrawable.setOverlay(baseline);
-        view.setBackgroundDrawable(baselineDrawable);
     }
 
 }

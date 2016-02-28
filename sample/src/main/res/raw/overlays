@@ -1,0 +1,7 @@
+# Overlay for all TextViews
+layout-bounds crosshair-size=8dp
+
+# Overlay for content
+grid-lines gravity=top step=4dp color=#800091EA
+checkers size=8dp
+layout-bounds crosshair-size=8dp
